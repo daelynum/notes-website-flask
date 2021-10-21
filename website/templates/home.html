@@ -1,0 +1,38 @@
+{%extends 'base.html'%}
+{%block title%}Home{%endblock%}
+
+{%block content%}
+<!-- displaying notes on the screen -->
+<div style="width: 100%; margin-left:0!important; margin-right:0!important;">
+  <div class="row" >
+    <div class="col-5">
+<ul class="list-group list-group-flush" id="notes">
+  {% for note in user.notes %}
+  <li class="list-group-item">
+     {{ note.data }}
+    <!-- add a delete button function from index.js -->
+    <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </li>
+  {% endfor %}
+    </div>
+
+    <div class="col-7" style="margin-left:0px; margin-right:0px;">
+      <form method="POST">
+        <!-- add a note input field -->
+  <textarea name="note" id="note" class="form-control" rows="20" ></textarea>
+  <br />
+  <div>
+    <!-- add a button for adding notes -->
+    <button type="submit" class="btn btn-primary">Add Note</button>
+  </div>
+</form>
+    </div>
+    <div class="w-100"></div>
+  </div>
+</div>
+
+</ul>
+
+{% endblock %}
